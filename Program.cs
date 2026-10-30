@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using SmartDeskAI.Data;
+
 namespace SmartDeskAI
 {
     public class Program
@@ -8,6 +11,8 @@ namespace SmartDeskAI
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<SmartDeskAI.Data.ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
